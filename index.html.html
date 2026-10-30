@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivos Confidenciais</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0507, #3d0c11, #5c1d24);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            max-width: 650px;
+            width: 100%;
+            background: rgba(15, 3, 5, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #881337;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 10px 0 20px 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+            color: #fecdd3;
+        }
+
+        .caixa-texto {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        #teoria-texto {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin: 0;
+        }
+
+        .nivel-sigilo {
+            font-size: 12px;
+            color: #fb7185;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        button {
+            background: linear-gradient(135deg, #881337, #be123c);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(136, 19, 55, 0.4);
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(190, 18, 60, 0.6);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <span class="badge">Nível de Acesso: Máximo</span>
+        <h1>📂 ARQUIVOS CONFIDENCIAIS</h1>
+        
+        <div class="caixa-texto">
+            <p id="teoria-texto">Pressione o botão abaixo para descriptografar o primeiro relatório interceptado...</p>
+        </div>
+
+        <div id="sigilo" class="nivel-sigilo">SIGILO: AGUARDANDO COMANDO</div>
+
+        <button onclick="revelarVerdade()">🔓 VAZAR TEORIA</button>
+    </div>
+
+    <footer>SISTEMA CRIPTOGRAFADO // IP REGISTRADO NO SERVIDOR CENTRAL</footer>
+
+    <script>
+        const teorias = [
+            "Os pombos são robôs do governo de recarga solar. É por isso que eles sempre sentam nos cabos de alta tensão.",
+            "O Wi-Fi fica lento quando chove porque as nuvens estão baixando atualizações pesadas para o simulador do planeta.",
+            "O botão 'fechar porta' dos elevadores só serve para acalmar a ansiedade humana. Ele não está conectado a nada.",
+            "As meias que desaparecem na máquina de lavar são usadas como moeda de troca por uma civilização subterrânea.",
+            "Gatos enxergam portas dimensionais e monstros do espaço. Quando olham pro nada, estão travando batalhas mentais por nós.",
+            "O som de ondas do mar em conchas é na verdade a gravação em loop do servidor central da Terra.",
+            "A gravidade não existe. O planeta simplesmente nos odeia e continua empurrando tudo para baixo por puro rancor.",
+            "E se os nossos maiores conflitos e crises foram apenas o comportamento de 'criança' de uma humanidade que civilizações avançadas observam à distância, esperando a gente crescer?",
+            "Se o passado, o presente e o futuro já existem simultaneamente no universo, o seu livre-arbítrio ao escolher algo agora é real, ou você só está assistindo a um filme que já foi gravado?",
+            "Se nós somos literalmente o universo acordando e ganhando consciência para poder admirar a si mesmo, qual é a sua responsabilidade por ser os 'olhos' dele?",
+            "E se todas as pessoas que já viveram forem a mesma consciência reencarnando em pontos de vista diferentes? O que a sua vida atual está ensinando a você sobre você mesmo?",
+            "Suas células se renovam completamente e quase nenhum átomo do seu corpo atual é o mesmo de uma década atrás. Se fisicamente e mentalmente você não é o mesmo de dez anos atrás, o que exatamente é essa continuidade chamada 'eu' que permanece intacta para dizer 'eu sou a mesma pessoa'?"
+        ];
+
+        const niveis = [
+            "SIGILO: ULTRA SECRETO // CLASSIFICAÇÃO ZETA",
+            "SIGILO: AMEAÇA À SEGURANÇA PLANETÁRIA",
+            "SIGILO: DOCUMENTO QUEIMADO EM 1987",
+            "SIGILO: VAZADO POR UM AGENTE DUPLO",
+            "SIGILO: RISCO DE DESTRUIÇÃO DO ESPAÇO-TEMPO"
+        ];
+
+        function revelarVerdade() {
+            const teoriaAleatoria = teorias[Math.floor(Math.random() * teorias.length)];
+            const nivelAleatorio = niveis[Math.floor(Math.random() * niveis.length)];
+
+            document.getElementById("teoria-texto").innerText = teoriaAleatoria;
+            document.getElementById("sigilo").innerText = nivelAleatorio;
+        }
+    </script>
+
+</body>
+</html>
